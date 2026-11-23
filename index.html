@@ -163,6 +163,18 @@ section{padding:100px 0}
 footer{padding:50px 0;text-align:center;color:var(--muted);font-size:.88rem}
 footer .logo{justify-content:center;margin-bottom:12px;color:var(--ink)}
 
+/* real photos */
+.item .pic.photo{overflow:hidden;padding:0;background:none}
+.item .pic.photo img{width:100%;height:100%;object-fit:cover}
+#gallery{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px;grid-auto-flow:dense}
+.gallery figure{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--cream);box-shadow:0 10px 26px -16px rgba(120,55,15,.35)}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.gallery figure:hover img{transform:scale(1.05)}
+.gallery figcaption{position:absolute;left:10px;bottom:10px;background:rgba(255,250,243,.92);color:var(--ink);font-weight:700;font-size:.8rem;padding:5px 11px;border-radius:999px}
+.g-tall{grid-row:span 2}.g-wide{grid-column:span 2}
+@media (max-width:760px){.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:150px}}
+
 /* cart drawer */
 .overlay{position:fixed;inset:0;background:rgba(43,29,20,.4);opacity:0;pointer-events:none;transition:opacity .3s;z-index:60}
 .overlay.show{opacity:1;pointer-events:auto}
@@ -316,6 +328,7 @@ button.flav{width:100%;font:inherit;color:inherit;cursor:pointer}
       <a href="#flavours">Flavours</a>
       <a href="#menu">Menu</a>
       <a href="#story">Our Story</a>
+      <a href="#gallery">Café</a>
       <a href="#reviews">Reviews</a>
       <a href="#visit">Visit</a>
     </div>
@@ -329,7 +342,7 @@ button.flav{width:100%;font:inherit;color:inherit;cursor:pointer}
     <div>
       <span class="eyebrow">🍦 Dairy Farm Mall · near Hillview MRT</span>
       <h1>Gelato, <span class="swash">waffles</span> &amp; boba, made in-house.</h1>
-      <p class="lead">From the folks behind Ambling Turtle: 16 gelato flavours churned in-house, crispy mochi waffles and egglets, and teas brewed to order.</p>
+      <p class="lead">From the folks behind Ambling Turtle: 16 gelato flavours churned in-house, warm waffles pressed to order, and specialty teas brewed fresh.</p>
       <div class="hero-ctas">
         <a href="#menu" class="btn btn-primary">Order for pickup</a>
         <a href="#flavours" class="btn btn-ghost">See today's flavours</a>
@@ -348,8 +361,8 @@ button.flav{width:100%;font:inherit;color:inherit;cursor:pointer}
         <div class="scoop s2"></div>
         <div class="scoop s3"><div class="cherry"></div></div>
       </div>
-      <div class="badge b1"><b>Mochi Waffle</b>crispy outside, chewy in</div>
-      <div class="badge b2"><b>Fresh Pandan</b>a fan favourite 💚</div>
+      <div class="badge b1"><b>Waffle + scoop</b>warm, crisp, $9.50</div>
+      <div class="badge b2"><b>Pandan Coconut</b>a local favourite 💚</div>
     </div>
   </div>
 </header>
@@ -376,7 +389,7 @@ button.flav{width:100%;font:inherit;color:inherit;cursor:pointer}
     </div>
     <div class="tabs" id="tabs"></div>
     <div class="items" id="items"></div>
-    <p class="note">* Prices shown are sample prices for this demo.</p>
+    <p class="note">* Prices from A.T. Glace's menu boards, as seen in Google Maps photos (some at soft-launch prices). Waffle + scoop prices are the board prices added together. Please confirm before launch.</p>
   </div>
 </section>
 
@@ -391,13 +404,37 @@ button.flav{width:100%;font:inherit;color:inherit;cursor:pointer}
       <div class="kicker">Our story</div>
       <h2>A.T. stands for Ambling Turtle.</h2>
       <p>A.T. Glace is the dessert spin-off of Ambling Turtle café. We took what people loved there and gave it its own home at Dairy Farm Mall: gelato made in small batches, waffles pressed to order, and teas brewed fresh.</p>
-      <p>Take it slow. Grab a scoop after a Dairy Farm hike, or a boba on your way home from Hillview.</p>
+      <p>Take it slow. Grab a scoop after a Dairy Farm hike, or a boba on your way home from Hillview. Big windows look out onto the greenery, there are comfy sofas to sink into, and a play corner keeps the little ones busy.</p>
       <div class="pillars">
         <div><b>🍨</b>Small-batch gelato made in-house</div>
-        <div><b>🧇</b>Waffles &amp; egglets pressed to order</div>
-        <div><b>🧋</b>Teas brewed fresh</div>
+        <div><b>🧇</b>Waffles pressed to order</div>
+        <div><b>🧋</b>Specialty teas brewed fresh</div>
+        <div><b>🧸</b>A kids' play corner</div>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="kicker">Inside the café</div><h2>Come for a scoop,<br>stay a while.</h2></div>
+      <p>Bright, green and cosy, with room for the whole family.</p>
+    </div>
+    <div class="gallery">
+      <figure class="reveal g-tall"><img src="assets/photos/waffle-sprinkles.webp" alt="A waffle topped with two scoops of chocolate gelato and rainbow sprinkles" loading="lazy"><figcaption>Waffle + double scoop</figcaption></figure>
+      <figure class="reveal g-wide"><img src="assets/photos/gelato-case.webp" alt="The gelato display case full of flavours" loading="lazy"><figcaption>The scoop counter</figcaption></figure>
+      <figure class="reveal"><img src="assets/photos/cup-hojicha.webp" alt="A cup of hojicha gelato" loading="lazy"><figcaption>Hojicha</figcaption></figure>
+      <figure class="reveal"><img src="assets/photos/scoops-case.webp" alt="Cups of gelato held above the display case" loading="lazy"><figcaption>Pick your flavours</figcaption></figure>
+      <figure class="reveal g-wide"><img src="assets/photos/interior-wide.webp" alt="The bright café with plants and big windows" loading="lazy"><figcaption>Big windows, lots of green</figcaption></figure>
+      <figure class="reveal"><img src="assets/photos/sofas.webp" alt="Comfy sofas and small round tables" loading="lazy"><figcaption>Sofa corner</figcaption></figure>
+      <figure class="reveal g-tall"><img src="assets/photos/window-seat.webp" alt="A table by the window looking out at trees" loading="lazy"><figcaption>Window seats</figcaption></figure>
+      <figure class="reveal"><img src="assets/photos/kids-corner.webp" alt="A play corner with small chairs and toy kitchens" loading="lazy"><figcaption>Kids' play corner</figcaption></figure>
+      <figure class="reveal"><img src="assets/photos/waffle-choc.webp" alt="A waffle with chocolate gelato and sprinkles" loading="lazy"><figcaption>Chocolate on a waffle</figcaption></figure>
+      <figure class="reveal"><img src="assets/photos/turtle-wall.webp" alt="The Ambling Turtle logo on a wooden wall panel" loading="lazy"><figcaption>Our turtle</figcaption></figure>
+      <figure class="reveal"><img src="assets/photos/cone-lamp.webp" alt="An ice cream cone shaped wall lamp" loading="lazy"><figcaption>Cone lamps</figcaption></figure>
+    </div>
+    <p class="note">Photos from A.T. Glace's Google Maps listing, shared by the café and its visitors.</p>
   </div>
 </section>
 
@@ -485,55 +522,63 @@ button.flav{width:100%;font:inherit;color:inherit;cursor:pointer}
 
 <script>
 const FLAVOURS=[
- ["Fresh Pandan","#7fb069","Fan favourite"],["Gula Melaka","#a86b3c",""],["Thai Milk Tea","#e69a5a","New"],
- ["Strawberry Milk","#f4a3b8",""],["Dark Chocolate","#5a3322",""],["Pistachio","#a9c07a","Premium"],
- ["Mango Sorbet","#f6b443","Dairy-free"],["Earl Grey","#b9a48c",""],["Taro","#b69ad8",""],
- ["Sea Salt Caramel","#d9a25f",""],["Hojicha","#9c6b48",""],["Vanilla Bean","#f5e8c8",""],
- ["Cookies & Cream","#cfc8c0",""],["Black Sesame","#5d5752",""],["Lychee Rose","#f7c6c9","Dairy-free"],
- ["Matcha","#8fae5b","Premium"]
+ ["Pistachio","#a9c07a","Premium"],["Vanilla Macadamia","#f1e3c2","Premium"],["Coconut Milk","#f4ede0",""],
+ ["Black Sesame","#5d5752",""],["Cookie & Cream","#cfc8c0",""],["Milo","#8a5a3c","Premium"],
+ ["Hazelnut","#b0814f","Premium"],["Melon Milk","#bfe3a5",""],["Berry Cheesecake","#e98aa6",""],
+ ["Speculoos Yogurt","#d6a36b","Premium"],["Hojicha","#9c6b48",""],["Guava Sorbet","#f59a9a","Sorbet"],
+ ["Dark Chocolate Milk","#5a3322",""],["Da Hong Pao Tea","#a0703f","Premium"],["Lychee Rose","#f7c6c9","Premium"],
+ ["Pandan Coconut","#7fb069",""]
 ];
+// [name, description, price, emoji, colour, photo]; prices from the shop's menu boards (Google Maps photos)
 const MENU={
  "Gelato":[
-  ["Single Scoop","Cup or cone, any flavour",5.0,"🍨","#ffd5c8"],
-  ["Double Scoop","Mix two flavours",9.0,"🍦","#ffe3b3"],
-  ["Gelato Pint","Take home ~470ml",18.0,"🥡","#fbdcb8"]],
- "Waffles & Egglets":[
-  ["Mochi Waffle","Crispy outside, chewy inside, free toppings",7.0,"🧇","#ffe3b3"],
-  ["Mochi Waffle + Scoop","With any gelato and drizzle",11.5,"🧇","#ffd5c8"],
-  ["Classic Belgian Waffle","Crispy, fluffy, maple syrup",7.0,"🧇","#f3d6bd"],
-  ["Egglet","Hong Kong-style egg waffle",6.5,"🥚","#ffe9bf"],
-  ["Egglet + Scoop","Egglet cone with gelato",10.0,"🍦","#fbdcb8"]],
- "Boba & Tea":[
-  ["Brown Sugar Boba Milk","Fresh milk, chewy pearls",5.8,"🧋","#f3d6bd"],
-  ["Thai Milk Tea","Strong, creamy, classic",5.5,"🧋","#ffd9b5"],
-  ["Jasmine Green Tea","Brewed to order, light",4.5,"🍵","#fbdcb8"],
-  ["Gelato Float","Any tea topped with a scoop",7.5,"🥤","#ffd5c8"]]
+  ["Single Scoop","Cup, any flavour. Premium flavours +$1",4.5,"🍨","#ffd5c8","cup-vanilla"],
+  ["Double Scoop","Mix two flavours. Premium flavours +$1 each",8.0,"🍦","#ffe3b3","cups-two"],
+  ["Cone","Swap your cup for a crunchy cone",0.8,"🍦","#fbdcb8"],
+  ["Premium flavour","Pistachio, Milo, Hazelnut and more, per scoop",1.0,"⭐","#ffe9bf"]],
+ "Waffles":[
+  ["Waffle","Crisp, golden, pressed to order",5.0,"🧇","#ffe3b3","waffle-single"],
+  ["Waffle + Single Scoop","A waffle topped with any flavour",9.5,"🧇","#ffd5c8","waffle-green"],
+  ["Waffle + Double Scoop","Two flavours on a warm waffle",13.0,"🧇","#f3d6bd","waffle-pink"]],
+ "Tea & Boba":[
+  ["Specialty Tea","Brewed to order: Jasmine Bai Mao Hou, Osmanthus Oolong, Organic Dan Cong, Organic Da Hong Pao, Pu'er or First Flush Assam",3.0,"🍵","#fbdcb8"],
+  ["Milk Tea","Any tea with fresh milk",4.0,"🧋","#ffd9b5","boba-waffle"],
+  ["Royal Cream Tea","Any tea with royal cream",4.0,"🧋","#f3d6bd"],
+  ["Boba Milk Tea","Tea with fresh milk and boba pearls",5.0,"🧋","#ffd5c8"],
+  ["Extra topping","Boba pearls, grass jelly or house-made mochi",1.0,"⚪","#ffe9bf"]],
+ "Coffee & Drinks":[
+  ["Black Coffee","Iced +$0.50",3.0,"☕","#f3d6bd"],
+  ["Latte / Cappuccino","Iced +$0.50",4.0,"☕","#ffe3b3"],
+  ["Gula Java Latte","Palm sugar latte. Iced +$0.50",4.5,"☕","#ffd9b5"],
+  ["Mocha","Iced +$0.50",4.5,"☕","#ffd5c8"],
+  ["Belgian Chocolate","Rich hot or iced chocolate",4.0,"🍫","#fbdcb8"],
+  ["IBC Root Beer","Classic bottled root beer",4.5,"🥤","#ffe9bf"]]
 };
 
 // marquee
-const mq=["16 in-house flavours","Mochi waffles","Egglets","Boba & brewed tea","Happy hour 3–5 PM","Dairy Farm Mall"];
+const mq=["16 in-house flavours","Warm waffles","Specialty tea & boba","Kids' play corner","Happy hour 3–5 PM","Dairy Farm Mall"];
 document.getElementById('marquee').innerHTML=[...mq,...mq,...mq,...mq].map(t=>`<span>${t}</span>`).join('');
 
 // flavours
 // What's inside each flavour: a line about it, then [picture, ingredient, note].
 // A picture is an emoji, or a colour for ingredients with no emoji (drawn as a little round sweet).
 const INSIDE={
- "Fresh Pandan":["Fragrant and grassy-sweet, like a kueh you can scoop.",[["🌿","Pandan leaves","blended fresh"],["🥥","Coconut milk","creamy, a little nutty"],["🥛","Fresh milk",""],["🍬","Cane sugar",""]]],
- "Gula Melaka":["Deep, smoky caramel from Malaysian palm sugar.",[["🍯","Gula melaka","palm sugar syrup"],["🥥","Coconut cream",""],["🥛","Fresh milk",""],["🧂","A pinch of salt","to wake it up"]]],
- "Thai Milk Tea":["Strong, sweet and creamy, the orange tea from the street stalls.",[["🍵","Thai tea leaves","brewed strong"],["🥫","Condensed milk",""],["🥛","Fresh milk",""],["🌼","Star anise & vanilla","a soft spice"]]],
- "Strawberry Milk":["Pink, sweet and fresh, like strawberry milk in a cone.",[["🍓","Strawberries","puréed with the seeds"],["🥛","Fresh milk",""],["🍶","Cream",""],["🍬","Cane sugar",""]]],
- "Dark Chocolate":["Rich and bittersweet, for proper chocolate lovers.",[["🍫","Dark chocolate","70% cocoa"],["#6B3F2A","Cocoa powder",""],["🥛","Fresh milk",""],["🍬","Cane sugar",""]]],
  "Pistachio":["Nutty, buttery and gently salty.",[["#A9C07A","Pistachios","roasted and ground"],["🥛","Fresh milk",""],["🍶","Cream",""],["🧂","Sea salt",""]]],
- "Mango Sorbet":["Bright, juicy and dairy-free.",[["🥭","Ripe mangoes","lots of them"],["🍋","Lime","a squeeze"],["💧","Water",""],["🍬","Cane sugar",""]]],
- "Earl Grey":["Floral black tea with a citrus twist.",[["🫖","Earl Grey tea","steeped in the milk"],["🍊","Bergamot","the citrus in Earl Grey"],["🥛","Fresh milk",""],["🍶","Cream",""]]],
- "Taro":["Soft, sweet and purple, with a hint of vanilla.",[["#B69AD8","Taro","steamed and mashed"],["🥥","Coconut milk",""],["🥛","Fresh milk",""],["🌼","Vanilla",""]]],
- "Sea Salt Caramel":["Golden caramel with a salty finish.",[["🍮","Caramel","cooked slowly"],["🧂","Sea salt flakes",""],["🧈","Butter",""],["🥛","Fresh milk",""]]],
- "Hojicha":["Roasted Japanese green tea: toasty, mellow, not bitter.",[["🍵","Hojicha","roasted green tea"],["🥛","Fresh milk",""],["🍶","Cream",""],["🍬","Cane sugar",""]]],
- "Vanilla Bean":["The classic, speckled with real vanilla seeds.",[["🌼","Vanilla beans","scraped by hand"],["🥛","Fresh milk",""],["🍶","Cream",""],["🥚","Egg yolks","for a silky scoop"]]],
- "Cookies & Cream":["Vanilla cream full of chocolate cookie crumbs.",[["🍪","Chocolate cookies","crushed in chunks"],["🌼","Vanilla",""],["🥛","Fresh milk",""],["🍶","Cream",""]]],
+ "Vanilla Macadamia":["Creamy vanilla with buttery macadamia crunch.",[["🌼","Vanilla",""],["#E8D3A8","Macadamia nuts","toasted"],["🥛","Fresh milk",""],["🍶","Cream",""]]],
+ "Coconut Milk":["Light, milky and tropical.",[["🥥","Coconut milk",""],["🥛","Fresh milk",""],["🍬","Cane sugar",""]]],
  "Black Sesame":["Toasty, nutty and a little savoury.",[["#2E2A28","Black sesame","toasted and ground"],["🍯","Honey",""],["🥛","Fresh milk",""],["🍶","Cream",""]]],
- "Lychee Rose":["Light and floral, and dairy-free.",[["#F7C6C9","Lychees","sweet and juicy"],["🌹","Rose","a gentle touch"],["🍋","Lemon",""],["💧","Water",""]]],
- "Matcha":["Earthy Japanese green tea, smooth and grown-up.",[["🍵","Matcha","stone-ground green tea"],["🥛","Fresh milk",""],["🍶","Cream",""],["🍬","Cane sugar",""]]]
+ "Cookie & Cream":["Vanilla cream full of chocolate cookie crumbs.",[["🍪","Chocolate cookies","crushed in chunks"],["🌼","Vanilla",""],["🥛","Fresh milk",""],["🍶","Cream",""]]],
+ "Milo":["The chocolate malt drink every Singaporean grew up with, as a scoop.",[["#8A5A3C","Milo","malted chocolate"],["🥛","Fresh milk",""],["🍶","Cream",""]]],
+ "Hazelnut":["Toasty, roasty and rich.",[["🌰","Hazelnuts","roasted"],["🥛","Fresh milk",""],["🍶","Cream",""],["🍬","Cane sugar",""]]],
+ "Melon Milk":["Sweet melon in a soft, milky scoop.",[["🍈","Melon",""],["🥛","Fresh milk",""],["🍶","Cream",""]]],
+ "Berry Cheesecake":["Tangy cream cheese swirled with berries.",[["🍓","Mixed berries",""],["🧀","Cream cheese",""],["🍪","Biscuit crumbs",""],["🥛","Fresh milk",""]]],
+ "Speculoos Yogurt":["Spiced biscuit and tangy yogurt.",[["🍪","Speculoos biscuits","crushed"],["#F3EBDD","Yogurt",""],["🥛","Fresh milk",""]]],
+ "Hojicha":["Roasted Japanese green tea: toasty, mellow, not bitter.",[["🍵","Hojicha","roasted green tea"],["🥛","Fresh milk",""],["🍶","Cream",""],["🍬","Cane sugar",""]]],
+ "Guava Sorbet":["Pink, fruity and refreshing.",[["#F59A9A","Guava","puréed"],["🍋","Lime",""],["💧","Water",""],["🍬","Cane sugar",""]]],
+ "Dark Chocolate Milk":["Rich chocolate in a milky scoop.",[["🍫","Dark chocolate",""],["#6B3F2A","Cocoa powder",""],["🥛","Fresh milk",""]]],
+ "Da Hong Pao Tea":["Roasty oolong tea from the Wuyi mountains, deep and smooth.",[["🫖","Da Hong Pao oolong","steeped in the milk"],["🥛","Fresh milk",""],["🍶","Cream",""]]],
+ "Lychee Rose":["Light, sweet and floral.",[["#F7C6C9","Lychees","sweet and juicy"],["🌹","Rose","a gentle touch"],["🍋","Lemon",""]]],
+ "Pandan Coconut":["Fragrant pandan and creamy coconut, like a kueh you can scoop.",[["🌿","Pandan leaves","blended fresh"],["🥥","Coconut milk",""],["🥛","Fresh milk",""],["🍬","Cane sugar",""]]]
 };
 document.getElementById('flavGrid').innerHTML=FLAVOURS.map((f,i)=>`
  <button type="button" class="flav reveal" data-i="${i}" style="transition-delay:${(i%8)*60}ms" aria-haspopup="dialog">
@@ -567,7 +612,7 @@ const tabsEl=document.getElementById('tabs'),itemsEl=document.getElementById('it
 function renderTabs(){tabsEl.innerHTML=Object.keys(MENU).map(k=>`<button class="tab ${k===tab?'active':''}" data-t="${k}">${k}</button>`).join('')}
 function renderItems(){itemsEl.innerHTML=MENU[tab].map((it,i)=>`
  <div class="item" style="animation-delay:${i*70}ms">
-  <div class="pic" style="--bg:${it[4]}">${it[3]}</div>
+  <div class="pic${it[5]?' photo':''}" style="--bg:${it[4]}">${it[5]?`<img src="assets/photos/${it[5]}.webp" alt="${it[0]}" loading="lazy">`:it[3]}</div>
   <div class="info"><h3>${it[0]}</h3><p>${it[1]}</p>
    <div class="row"><span class="price">$${it[2].toFixed(2)}</span>
    <button class="add" data-n="${it[0]}" data-p="${it[2]}" aria-label="Add ${it[0]}">+</button></div></div>
