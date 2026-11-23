@@ -155,18 +155,9 @@ section{padding:100px 0}
 .hours{list-style:none;border-top:1px solid rgba(255,255,255,.15)}
 .hours li{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.15)}
 .card .btn{margin-top:28px;background:var(--mango);color:var(--ink)}
-.map{border-radius:32px;background:
-  linear-gradient(90deg,transparent 48%,#fff4e4 48% 52%,transparent 52%),
-  linear-gradient(0deg,transparent 30%,#fff4e4 30% 33%,transparent 33%),
-  linear-gradient(30deg,transparent 60%,#fff4e4 60% 62%,transparent 62%),
-  radial-gradient(circle at 18% 72%,#e5c28f 0 11%,transparent 12%),
-  radial-gradient(circle at 80% 20%,#e9c99c 0 9%,transparent 10%),
-  #f2d8b6;position:relative;min-height:340px;overflow:hidden;border:1px solid var(--line)}
-.pin{position:absolute;top:44%;left:50%;transform:translate(-50%,-100%);text-align:center;animation:bounce 2s infinite}
-.pin span{display:block;background:var(--berry);color:#fff;font-weight:700;padding:8px 14px;border-radius:12px;font-size:.9rem;white-space:nowrap}
-.pin::after{content:"";display:block;width:0;height:0;margin:0 auto;border:9px solid transparent;border-top-color:var(--berry)}
-@keyframes bounce{50%{transform:translate(-50%,calc(-100% - 10px))}}
-.mrt{position:absolute;bottom:22px;left:22px;background:#fff;padding:8px 12px;border-radius:10px;font-size:.82rem;font-weight:700}
+.map{border-radius:32px;background:#f2d8b6;position:relative;min-height:340px;overflow:hidden;border:1px solid var(--line)}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:sepia(.25) saturate(1.1)}
+.mrt{position:absolute;bottom:22px;left:22px;pointer-events:none;box-shadow:0 4px 12px rgba(80,40,10,.2);background:#fff;padding:8px 12px;border-radius:10px;font-size:.82rem;font-weight:700}
 .mrt i{display:inline-block;background:#005ec4;color:#fff;font-style:normal;padding:1px 6px;border-radius:5px;margin-right:6px}
 
 footer{padding:50px 0;text-align:center;color:var(--muted);font-size:.88rem}
@@ -455,7 +446,7 @@ button.flav{width:100%;font:inherit;color:inherit;cursor:pointer}
       <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Dairy+Farm+Mall+4+Dairy+Farm+Lane+Singapore+677622">Get directions →</a>
     </div>
     <div class="map reveal">
-      <div class="pin"><span>🍦 A.T. Glace · B1</span></div>
+      <iframe title="Map of Dairy Farm Mall" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Dairy+Farm+Mall,+4+Dairy+Farm+Lane,+Singapore+677622&amp;output=embed"></iframe>
       <div class="mrt"><i>DT3</i>Hillview MRT · short walk</div>
     </div>
   </div>
