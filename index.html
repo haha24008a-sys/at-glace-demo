@@ -349,7 +349,7 @@ button.flav{width:100%;font:inherit;color:inherit;cursor:pointer}
       </div>
       <div class="stats">
         <div><b data-count="16">0</b>in-house flavours</div>
-        <div><b>11–9</b>open daily</div>
+        <div><b>1–9:30</b>closed Fridays</div>
         <div><b>3–5</b>happy hour</div>
       </div>
     </div>
@@ -389,7 +389,7 @@ button.flav{width:100%;font:inherit;color:inherit;cursor:pointer}
     </div>
     <div class="tabs" id="tabs"></div>
     <div class="items" id="items"></div>
-    <p class="note">* Prices from A.T. Glace's menu boards, as seen in Google Maps photos (some at soft-launch prices). Waffle + scoop prices are the board prices added together. Please confirm before launch.</p>
+    <p class="note">* Prices from A.T. Glace's menu boards, as seen in Google Maps photos (some at soft-launch prices). Waffle + scoop prices are the board prices added together. *Mochi waffle price is a sample. Please confirm before launch.</p>
   </div>
 </section>
 
@@ -477,7 +477,8 @@ button.flav{width:100%;font:inherit;color:inherit;cursor:pointer}
       <h2>Come say hi.</h2>
       <p class="addr">#B1-05/06, Dairy Farm Mall<br>4 Dairy Farm Lane, Singapore 677622</p>
       <ul class="hours">
-        <li><span>Monday – Sunday</span><span>11:00 AM – 9:00 PM</span></li>
+        <li><span>Sat – Thu</span><span>1:00 PM – 9:30 PM</span></li>
+        <li><span>Friday</span><span>Closed</span></li>
         <li><span>Happy Hour</span><span>3:00 PM – 5:00 PM</span></li>
       </ul>
       <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Dairy+Farm+Mall+4+Dairy+Farm+Lane+Singapore+677622">Get directions →</a>
@@ -537,9 +538,10 @@ const MENU={
   ["Cone","Swap your cup for a crunchy cone",0.8,"🍦","#fbdcb8"],
   ["Premium flavour","Pistachio, Milo, Hazelnut and more, per scoop",1.0,"⭐","#ffe9bf"]],
  "Waffles":[
-  ["Waffle","Crisp, golden, pressed to order",5.0,"🧇","#ffe3b3","waffle-single"],
-  ["Waffle + Single Scoop","A waffle topped with any flavour",9.5,"🧇","#ffd5c8","waffle-green"],
-  ["Waffle + Double Scoop","Two flavours on a warm waffle",13.0,"🧇","#f3d6bd","waffle-pink"]],
+  ["Waffle","Big and pressed to order: plain, chocolate or pandan",5.0,"🧇","#ffe3b3","waffle-single"],
+  ["Waffle + Single Scoop","A warm waffle topped with any flavour",9.5,"🧇","#ffd5c8","waffle-green"],
+  ["Waffle + Double Scoop","Two flavours on a warm waffle",13.0,"🧇","#f3d6bd","waffle-pink"],
+  ["Pandan Mochi Waffle","Crisp outside, a generous layer of chewy mochi inside. Takes a little longer, worth the wait*",7.0,"🧇","#e3f0cf"]],
  "Tea & Boba":[
   ["Specialty Tea","Brewed to order: Jasmine Bai Mao Hou, Osmanthus Oolong, Organic Dan Cong, Organic Da Hong Pao, Pu'er or First Flush Assam",3.0,"🍵","#fbdcb8"],
   ["Milk Tea","Any tea with fresh milk",4.0,"🧋","#ffd9b5","boba-waffle"],
@@ -675,12 +677,14 @@ function toast(m){const t=document.getElementById('toast');t.textContent=m;t.cla
 // live hours (Singapore time)
 function sgNow(){const d=new Date();return new Date(d.getTime()+(d.getTimezoneOffset()+480)*60000)}
 function hours(){
- const h=sgNow(),m=h.getHours()*60+h.getMinutes();
- const isOpen=m>=660&&m<1260,isHH=m>=900&&m<1020;
+ // hours from Google Maps: 1–9:30 PM, closed Fridays
+ const h=sgNow(),m=h.getHours()*60+h.getMinutes(),day=h.getDay(),fri=day===5;
+ const isOpen=!fri&&m>=780&&m<1290,isHH=!fri&&m>=900&&m<1020;
+ const next=fri?'opens Saturday 1 PM':m<780?'opens 1 PM':day===4?'opens Saturday 1 PM':'opens tomorrow 1 PM';
  const on=document.getElementById('openNow');on.classList.toggle('on',isOpen);
- on.querySelector('span').textContent=isOpen?'Open now · until 9 PM':'Closed now · opens 11 AM';
+ on.querySelector('span').textContent=isOpen?'Open now · until 9:30 PM':'Closed now · '+next;
  const hh=document.getElementById('hh');hh.classList.toggle('live',isHH);
- document.getElementById('hhText').innerHTML=isHH?'Happy Hour is <b>ON now</b> until 5 PM, come grab a treat!':'Happy Hour daily <b>3–5 PM</b> · Open 11 AM – 9 PM';
+ document.getElementById('hhText').innerHTML=isHH?'Happy Hour is <b>ON now</b> until 5 PM, come grab a treat!':'Happy Hour <b>3–5 PM</b> · Open 1–9:30 PM · Closed Fridays';
 }
 hours();setInterval(hours,60000);
 
