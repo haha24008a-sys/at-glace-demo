@@ -518,23 +518,13 @@ const sfx=(()=>{
   for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;const s=a.createBufferSource(),bp=a.createBiquadFilter(),g=a.createGain();
   s.buffer=buf;bp.type='bandpass';bp.Q.value=1.4;bp.frequency.setValueAtTime(f1,t);bp.frequency.exponentialRampToValueAtTime(f2,t+len);
   g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.05);g.gain.exponentialRampToValueAtTime(.001,t+len);s.connect(bp).connect(g).connect(a.destination);s.start(t)};
- // soft recorded sounds, kept very quiet: a scoop being scooped and the turtle's little steps
- const clip=(src,vol)=>{const a=new Audio(src);a.volume=vol;a.preload='auto';return a};
- const scoopA=clip('assets/hf/scoop.mp3',.3),stepsA=clip('assets/hf/turtle.mp3',.25),farScoop=clip('assets/hf/scoop.mp3',.08);
- const play=a=>{if(!on)return;try{a.currentTime=0;a.play().catch(()=>{})}catch{}};
- // now and then, a far-off scoop at the counter, so the café feels alive
- let bgT;const bg=()=>{clearTimeout(bgT);bgT=setTimeout(()=>{if(on&&!document.hidden)play(farScoop);bg()},18000+Math.random()*20000)};
  btn.onclick=()=>{on=!on;try{localStorage.setItem('atg-sound',on?'on':'off')}catch{};show();
-  if(on){amb.play().catch(()=>{});tone(660,880,.12,'triangle');bg()}else{amb.pause();clearTimeout(bgT)}};
- if(on)bg();
+  if(on){amb.play().catch(()=>{});tone(660,880,.12,'triangle')}else amb.pause()};
  show();
  // ambience can only start after a tap, so a remembered "on" waits for the first one
  if(on)addEventListener('pointerdown',()=>amb.play().catch(()=>{}),{once:true});
- let stepAt=0;
  return{
-  plop:()=>{play(scoopA);tone(520,180,.18,'sine',.1,.25)},
-  // the turtle's footsteps, at most once every few seconds while it walks
-  steps:()=>{const t=Date.now();if(t-stepAt>3500){stepAt=t;play(stepsA)}},
+  plop:()=>{tone(520,180,.18,'sine',.22);tone(900,1300,.06,'triangle',.06,.02)},
   pop:()=>tone(300,900,.1,'triangle',.12),
   chime:()=>[784,988,1319].forEach((f,i)=>tone(f,f,.35,'triangle',.1,i*.09)),
   shwoop:()=>noise(.32,350,3200,.4),
@@ -772,7 +762,7 @@ function onScroll(){
  const x=seg<xs.length-1?xs[seg]+(xs[seg+1]-xs[seg])*frac:xs.at(-1);
  walker.style.left=x+'px';
  links.forEach((l,i)=>l.setAttribute('aria-current',i===seg));
- if(!RM&&Math.abs(scrollY-lastY)>1){if(!walker.classList.contains('walking'))sfx.steps();walker.classList.add('walking');walker.classList.toggle('left',scrollY<lastY);clearTimeout(walkT);walkT=setTimeout(()=>walker.classList.remove('walking'),180)}
+ if(!RM&&Math.abs(scrollY-lastY)>1){walker.classList.add('walking');walker.classList.toggle('left',scrollY<lastY);clearTimeout(walkT);walkT=setTimeout(()=>walker.classList.remove('walking'),180)}
  lastY=scrollY;
 }
 addEventListener('scroll',()=>requestAnimationFrame(onScroll),{passive:true});addEventListener('resize',onScroll);onScroll();
