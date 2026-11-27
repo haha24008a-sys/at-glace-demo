@@ -644,13 +644,19 @@ function scoopPath(r,dip){
 // where scoops go: pos[n-1] lists each scoop {x,y,r,rot} when there are n scoops
 const STACKED=(y0,y1)=>[[{x:150,y:y0,r:62,rot:0}],[{x:150,y:y0,r:62,rot:0},{x:156,y:y1,r:56,rot:-4}]];
 const BASES={
+ // the real A.T. Glace cup: white paper, slight taper, rolled rim, black serif name on the front
  cup:{pos:STACKED(190,140),
-  back:`<ellipse cx="150" cy="201" rx="76" ry="13" fill="#c96f84" stroke="${INK}" stroke-width="3"/>`,
-  front:`<path d="M74 201Q150 217 226 201L207 300Q150 312 93 300Z" fill="url(#cupG)" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>
-   <path d="M80 232Q150 246 220 232" stroke="#fff" stroke-width="7" fill="none" opacity=".55"/>
-   <path d="M85 256Q150 268 215 256" stroke="#e98aa6" stroke-width="5" fill="none" opacity=".6"/>
-   <path d="M74 201Q150 217 226 201" stroke="#f2a9b8" stroke-width="10" fill="none" stroke-linecap="round"/>
-   <path d="M71 199Q150 222 229 199" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>`},
+  back:`<ellipse cx="150" cy="201" rx="78" ry="14" fill="#d9d3ca" stroke="${INK}" stroke-width="3"/>`,
+  front:`<path d="M74 202Q150 218 226 202L210 292Q150 304 90 292Z" fill="url(#cupG)" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>
+   <g font-family="Didot,'Bodoni 72','Playfair Display',Georgia,serif" fill="#1d1d1d" text-anchor="middle">
+    <text x="150" y="240" font-size="17" letter-spacing="5">A.T.</text>
+    <text x="150" y="266" font-size="24" letter-spacing="4">GLACE</text>
+   </g>
+   <path d="M90 292Q150 304 210 292" stroke="#cfc8bd" stroke-width="3" fill="none"/>
+   <path d="M73 201Q150 220 227 201" stroke="#fff" stroke-width="12" fill="none" stroke-linecap="round"/>
+   <path d="M76 208Q150 226 224 208" stroke="#e4ded5" stroke-width="2" fill="none"/>
+   <path d="M67 199Q150 214 233 199" stroke="${INK}" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+   <path d="M69 206Q150 228 231 206" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>`},
  cone:{pos:STACKED(158,108),
   back:`<ellipse cx="150" cy="168" rx="73" ry="11" fill="#b8773d" stroke="${INK}" stroke-width="3"/>`,
   front:`<path d="M77 168Q150 184 223 168L152 314Q150 318 148 314Z" fill="url(#waf)" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>
@@ -666,7 +672,7 @@ const BASES={
    <path d="M22 233H278M147 188V284" stroke="#f6cf8f" stroke-width="2" stroke-linecap="round" opacity=".8"/>`,
   front:''}};
 const DEFS=`<defs>
- <linearGradient id="cupG" x1="0" x2="1"><stop offset="0" stop-color="#f4b3c0"/><stop offset=".45" stop-color="#fde3e6"/><stop offset="1" stop-color="#f0a7b6"/></linearGradient>
+ <linearGradient id="cupG" x1="0" x2="1"><stop offset="0" stop-color="#e6e1d9"/><stop offset=".3" stop-color="#fdfcfa"/><stop offset=".6" stop-color="#ffffff"/><stop offset="1" stop-color="#ddd7ce"/></linearGradient>
  <pattern id="waf" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" fill="#e9b26a"/><path d="M0 0H14M0 0V14" stroke="#c98a4b" stroke-width="3"/></pattern>
  <pattern id="wafHoles" width="22" height="22" patternUnits="userSpaceOnUse" patternTransform="translate(150 236) scale(1 .42)"><rect width="22" height="22" fill="#f0bd72"/><rect x="4" y="4" width="14" height="14" rx="3" fill="#c98a4b"/><rect x="4" y="4" width="14" height="5" rx="2" fill="#a86d34"/></pattern>
  <radialGradient id="gloss" cx=".35" cy=".3" r=".6"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></radialGradient>
