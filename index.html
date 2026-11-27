@@ -58,7 +58,7 @@ h3{font-size:1.2rem}
 /* intro: the logo's own turtle crawls in head-first, rings the ice cream with its shell,
    the circle's picture grows out of the cone, then the name writes itself in */
 body.intro-on{overflow:hidden}
-.intro{position:fixed;inset:0;z-index:100;background:#fff;display:grid;place-items:center;overflow:hidden;transition:opacity .8s ease,visibility 0s linear .8s}
+.intro{position:fixed;inset:0;z-index:100;background:#fff;display:grid;place-items:center;overflow:hidden;transition:opacity .5s ease,visibility 0s linear .5s}
 .intro.done{opacity:0;visibility:hidden}
 .tap-hint{position:absolute;bottom:32px;left:0;right:0;text-align:center;font:600 .95rem 'Fredoka',sans-serif;color:#7a5a48;animation:hint 2s ease-in-out infinite}
 @keyframes hint{50%{opacity:.4}}
@@ -66,19 +66,19 @@ body.intro-on{overflow:hidden}
 .intro.words-in .intro-logo{transform:scale(1.03)}
 .intro-logo img{position:absolute;inset:0;width:100%;height:100%}
 /* the pastel picture inside the circle, growing out from the cone */
-.intro-logo .iscene{clip-path:circle(0% at 24.39% 49.58%);transition:clip-path .9s cubic-bezier(.5,0,.2,1)}
+.intro-logo .iscene{clip-path:circle(0% at 24.39% 49.58%);transition:clip-path .55s cubic-bezier(.5,0,.2,1)}
 .intro.fill .iscene{clip-path:circle(15.6% at 24.39% 49.58%)}
 /* the logo's turtle, swapped in under the traced one (same lines, so no visible jump) */
 .intro-logo .mark{clip-path:inset(0 50.5% 0 0);opacity:0;transition:opacity .6s ease}
 .intro.logo .mark{opacity:1}
 /* the name: hidden completely until its turn, then a soft wipe left to right while it rises */
-.intro-logo .words{clip-path:inset(0 0 0 49.5%);visibility:hidden;-webkit-mask-image:linear-gradient(90deg,#000 40%,transparent 60%);mask-image:linear-gradient(90deg,#000 40%,transparent 60%);-webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-position:100% 0;mask-position:100% 0;transform:translateY(8px);transition:mask-position 1.4s ease,-webkit-mask-position 1.4s ease,transform 1.4s cubic-bezier(.2,.8,.2,1)}
+.intro-logo .words{clip-path:inset(0 0 0 49.5%);visibility:hidden;-webkit-mask-image:linear-gradient(90deg,#000 40%,transparent 60%);mask-image:linear-gradient(90deg,#000 40%,transparent 60%);-webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-position:100% 0;mask-position:100% 0;transform:translateY(8px);transition:mask-position .9s ease,-webkit-mask-position .9s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
 .intro.words-in .words{visibility:visible;-webkit-mask-position:0 0;mask-position:0 0;transform:none}
 .intro .cone-mini{position:absolute;left:24.39%;top:49.58%;width:20%;transform:translate(-50%,-50%);transition:opacity .6s ease .3s;animation:pop-in .5s .15s cubic-bezier(.3,1.7,.5,1) both}
 @keyframes pop-in{from{transform:translate(-50%,-50%) scale(0)}}
 .intro.fill .cone-mini{opacity:0}
 /* the traced turtle covers the logo exactly; it starts off-screen behind its tail */
-.intro .iwalker{position:absolute;inset:0;width:100%;height:100%;overflow:visible;transform:translate(56vmax,57vmax);transition:transform 2.8s cubic-bezier(.25,.6,.3,1),opacity .6s ease .2s}
+.intro .iwalker{position:absolute;inset:0;width:100%;height:100%;overflow:visible;transform:translate(56vmax,57vmax);transition:transform 1.55s cubic-bezier(.25,.6,.3,1),opacity .6s ease .2s}
 .intro.arrive .iwalker{transform:none}
 .intro.logo .iwalker{opacity:0}
 .iwalker .sway{transform-box:view-box;transform-origin:180px 177px;animation:sway 1s ease-in-out infinite alternate}
@@ -588,16 +588,16 @@ const sfx=(()=>{
  const end=()=>{el.classList.add('done');document.body.classList.remove('intro-on');setTimeout(()=>el.remove(),900)}; // gone after its fade, so nothing invisible blocks clicks
  if(matchMedia('(prefers-reduced-motion: reduce)').matches){end();return}
  const at=(ms,f)=>setTimeout(f,ms);
- at(400,()=>el.classList.add('arrive'));
- at(3200,()=>{ // stop paddling on a resting pose, so the lines match the logo
+ at(150,()=>el.classList.add('arrive'));
+ at(1700,()=>{ // stop paddling on a resting pose, so the lines match the logo
   el.classList.add('rest');
   const w=document.getElementById('iwalker'),t=w.getCurrentTime(),next=Math.ceil(t/.5)*.5;
   setTimeout(()=>{w.pauseAnimations();w.setCurrentTime(next)},(next-t)*1000);
  });
- at(3500,()=>el.classList.add('fill'));   // picture grows out of the cone
- at(4300,()=>el.classList.add('logo'));   // swap to the logo image itself
- at(4700,()=>el.classList.add('words-in'));
- at(6800,end);
+ at(1800,()=>el.classList.add('fill'));   // picture grows out of the cone
+ at(2300,()=>el.classList.add('logo'));   // swap to the logo image itself
+ at(2500,()=>el.classList.add('words-in'));
+ at(3800,end);
 })();
 
 // door bells as the intro starts. Browsers only allow sound once the visitor has interacted
@@ -611,7 +611,7 @@ const sfx=(()=>{
   const off=()=>['pointerdown','keydown'].forEach(t=>removeEventListener(t,ring,true));
   ['pointerdown','keydown'].forEach(t=>addEventListener(t,ring,true));
   setTimeout(off,7000);
- },350);
+ },150);
 })();
 
 /* ---------- build-a-cone ---------- */
