@@ -60,6 +60,8 @@ h3{font-size:1.2rem}
 body.intro-on{overflow:hidden}
 .intro{position:fixed;inset:0;z-index:100;background:#fff;display:grid;place-items:center;overflow:hidden;transition:opacity .8s ease,visibility 0s linear .8s}
 .intro.done{opacity:0;visibility:hidden}
+.tap-hint{position:absolute;bottom:32px;left:0;right:0;text-align:center;font:600 .95rem 'Fredoka',sans-serif;color:#7a5a48;animation:hint 2s ease-in-out infinite}
+@keyframes hint{50%{opacity:.4}}
 .intro-logo{position:relative;width:min(640px,88vw);aspect-ratio:738/357;transition:transform 1.2s cubic-bezier(.3,1.4,.5,1)}
 .intro.words-in .intro-logo{transform:scale(1.03)}
 .intro-logo img{position:absolute;inset:0;width:100%;height:100%}
@@ -270,6 +272,7 @@ body.melting h1,body.melting h2{filter:url(#melt)}
 </svg>
 
 <div class="intro" id="intro" aria-hidden="true">
+  <p class="tap-hint">Tap anywhere for sound</p>
   <div class="intro-logo">
     <svg class="cone-mini" viewBox="0 0 100 100" aria-hidden="true">
       <circle cx="50" cy="50" r="48" fill="#fbe3cf"/>
@@ -530,7 +533,8 @@ const MENU={
 
 /* ---------- sound: soft ambience file + tiny browser-made sounds; off by default ---------- */
 const sfx=(()=>{
- let ac=null,on=false;try{on=localStorage.getItem('atg-sound')==='on'}catch{}
+ // sound is on by default (unless the visitor switched it off before)
+ let ac=null,on=true;try{on=localStorage.getItem('atg-sound')!=='off'}catch{}
  const amb=new Audio('assets/hf/ambient.mp3');amb.loop=true;amb.volume=.35;
  const btn=$('#soundBtn');
  const show=()=>{btn.setAttribute('aria-pressed',on);btn.setAttribute('aria-label',on?'Sound on':'Sound off');
@@ -548,7 +552,11 @@ const sfx=(()=>{
   if(on){amb.play().catch(()=>{});tone(660,880,.12,'triangle')}else amb.pause()};
  show();
  // ambience can only start after a tap, so a remembered "on" waits for the first one
- if(on)addEventListener('pointerdown',()=>amb.play().catch(()=>{}),{once:true});
+ // browsers block sound until the first tap, click or key press, so start the ambience right then
+ if(!on)document.querySelector('.tap-hint')?.remove();
+ const first=()=>{['pointerdown','keydown','touchstart'].forEach(t=>removeEventListener(t,first,true));document.querySelector('.tap-hint')?.remove();
+  if(on){ctx().resume();amb.play().catch(()=>{})}};
+ ['pointerdown','keydown','touchstart'].forEach(t=>addEventListener(t,first,true));
  // shop door bells for the intro: a small brass bell, a few out-of-tune partials ringing out
  const bells=()=>{
   if(!on)return false;const a=ctx();
